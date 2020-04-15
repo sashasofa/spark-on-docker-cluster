@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile
-    command: bin/spark-class org.apache.spark.deploy.master.Master -h master
+    command: bin/spark-class org.apache.spark.deploy.master.Master -h master --webui-port 8085
     hostname: master
     environment:
       MASTER: spark://master:7077
@@ -17,6 +17,7 @@ services:
       - 4040:4040
       - 6066:6066
       - 7077:7077
+      - 8085:8085
     volumes:
       - ./conf/master:/conf
       - ./data:/tmp/data
